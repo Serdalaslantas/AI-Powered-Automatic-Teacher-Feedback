@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+openai
+python-docx 
+PyPDF2 
+textract
+PyRTF3
+python-dotenv

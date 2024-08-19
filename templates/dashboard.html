@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Welcome, {{ current_user.username }}!</h1>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">{{ article.title }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Feedback Status</h5>
+                        <p class="card-text">{{ article.feedback[:100] }}...</p>
+                        <a href="{{ url_for('article', id=article.id) }}" class="btn btn-light">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a href="{{ url_for('upload') }}" class="btn btn-success btn-lg">Upload New Article</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <div class="card text-dark bg-light">
+        <div class="card-header">
+            <h2>{{ article.title }}</h2>
+        </div>
+        <div class="card-body">
+            <a href="{{ url_for('uploaded_file', filename=article.filename) }}" class="btn btn-primary mb-3">Download Article</a>
+            <h5>AI-Generated Feedback</h5>
+            <p>{{ article.feedback }}</p>
+            {% if current_user.is_teacher %}
+                <form method="POST" action="{{ url_for('article', id=article.id) }}">
+                    <div class="form-group mb-3">
+                        <label for="feedback">Provide Additional Feedback:</label>
+                        <textarea id="feedback" name="feedback" class="form-control" rows="4">{{ article.feedback }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Submit Feedback</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class="text-center mt-3">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+{% endblock %}
