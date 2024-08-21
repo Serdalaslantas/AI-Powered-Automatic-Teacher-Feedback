@@ -83,10 +83,10 @@ def generate_ai_feedback(article_content):
     try:
         client = OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "Sen Türkçe konuşan bir asistansın ve öğrenci makalelerine yapıcı geri bildirim sağlıyorsun."},
-                {"role": "user", "content": f"Lütfen aşağıdaki öğrenci makalesi için yapıcı geri bildirim ver:\n\n{article_content}"}
+                {"role": "system", "content": "You are an assistant that excels in constructive feedback for the given student essay. Your reply should be in the main language used in the essay."},
+                {"role": "user", "content": f"{article_content}"}
             ],
             max_tokens=500
         )
